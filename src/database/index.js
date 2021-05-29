@@ -1,18 +1,28 @@
-import Sequelize from 'sequelize';
-import User from '../app/models/User';
-import databaseconfig from '../config/database';
+import Sequelize from "sequelize";
+import mongoose from "mongoose";
 
-const models = [User]
+import User from "../app/models/User";
+import databaseconfig from "../config/database";
 
-class Database{
-    constructor(){
-        this.init()
-    }
+const models = [User];
 
-    init() {
-        this.connection = new Sequelize(databaseconfig);
-        models.map( model => model.init(this.connection));
-    }
+class Database {
+  constructor() {
+    this.init();
+    this.mongo();
+  }
+
+  init() {
+    this.connection = new Sequelize(databaseconfig);
+    models.map((model) => model.init(this.connection));
+  }
+
+  mongo() {
+    this.mongoConnection = mongoose.connect(
+      "mongodb+srv://afya:afya@cluster0.lwkmz.mongodb.net/afya?retryWrites=true&w=majority",
+      { useNewUrlParser: true, useUnifiedTopology: true }
+    );
+  }
 }
 
 export default new Database();
