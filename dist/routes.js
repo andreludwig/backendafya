@@ -2,6 +2,7 @@
 
 var _UserController = require('./app/controller/UserController'); var _UserController2 = _interopRequireDefault(_UserController);
 var _SessionController = require('./app/controller/SessionController'); var _SessionController2 = _interopRequireDefault(_SessionController);
+var _NotificationsController = require('./app/controller/NotificationsController'); var _NotificationsController2 = _interopRequireDefault(_NotificationsController);
 
 var _auth = require('./app/middlewares/auth'); var _auth2 = _interopRequireDefault(_auth);
 
@@ -21,6 +22,10 @@ routes.post('/session', _SessionController2.default.store)
 routes.use(_auth2.default)
 
 // Logar
-routes.post('/dash', _auth2.default, _UserController2.default.index)
+routes.post('/dash', _UserController2.default.index)
+
+// Notificações
+routes.get('/notifications', _NotificationsController2.default.index)
+routes.put('/notifications/:id', _NotificationsController2.default.update)
 
 exports. default = routes;
