@@ -1,5 +1,6 @@
 import app from './app';
 import express from 'express';
 
-app.use(express.json())
-app.listen(3000)
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT);
